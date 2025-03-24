@@ -32,7 +32,8 @@ Simple Pokedex application.
 
 8. Add the pokemon_app app to settings.py file
 
-``` INSTALLED_APPS = [
+```
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,19 +41,24 @@ Simple Pokedex application.
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pokemon_app',
-] ```
+]
+```
 
 ### Link PostgreSQL with Django
 9. Create the database
-```# bash
+```
+# bash
   createdb pokedex_db
 # SQL 
-  CREATE DATABASE pokedex_db;```
+  CREATE DATABASE pokedex_db;
+```
 
 10. Set Postgres to default database
-```DATABASES = {
+```
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pokedex_db',
     }
-}```
+}
+```
