@@ -1,17 +1,19 @@
 from django.db import models
 from django.utils import timezone
 
+from django.core import validators as v
+from .validators import validate_name
 # Create your models here.
 
 # models.Model tell Django this is a Model that should be reflected on our database
 class Pokemon(models.Model):
     # CharField is a character field and has a default max length of 255 characters
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, validators=[validate_name])
     # IntegerField will allow only solid numerical values as input
-    level = models.IntegerField(default=1)
+    level = models.IntegerField(default=1, validators=[v.MinValueValidator(1), v.MaxValueValidator(100)])
     date_encountered = models.DateField(default="2025-01-01")
     date_captured = models.DateTimeField(default=timezone.now)
-    description = models.TextField(default="Unknown")
+    description = models.TextField(default="Unknown", validators=[v.MinLengthValidator(7), v.MaxLengthValidator(150)])
     captured = models.BooleanField(default=False)
 
     def __str__(self):
