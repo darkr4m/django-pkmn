@@ -3,6 +3,9 @@ from django.utils import timezone
 
 from django.core import validators as v
 from .validators import validate_name
+
+from move_app.models import Move
+
 # Create your models here.
 
 # models.Model tell Django this is a Model that should be reflected on our database
@@ -15,6 +18,7 @@ class Pokemon(models.Model):
     date_captured = models.DateTimeField(default=timezone.now)
     description = models.TextField(default="Unknown", validators=[v.MinLengthValidator(7), v.MaxLengthValidator(150)])
     captured = models.BooleanField(default=False)
+    moves = models.ManyToManyField(Move, related_name="pokemon")
 
     def __str__(self):
         return f"{self.name} {'has been captured.' if self.captured else 'has yet to be caught.'}"
